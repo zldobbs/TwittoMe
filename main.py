@@ -1,6 +1,6 @@
 # --------------- INITIALIZATION AND CONFIG ----
 # imports and initiatilization
-from flask import Flask
+from flask import Flask, request
 # from urllib.parse import urlencode
 # from urllib.request import Request, urlopen
 import tweepy, json, config, time, threading, requests, html
@@ -36,7 +36,7 @@ class PollingThread(object):
                 status = api.user_timeline(screen_name = self.username, count = 1, tweet_mode = 'extended')
                 self.top = status[0]
                 print("Init: " + html.unescape(self.top.full_text))
-                # send_message(self.top.full_text)
+                # send_message(html.unescape(self.top.full_text))
                 print(self.top.id)
             else:
                 status = api.user_timeline(screen_name = self.username, count = 1, tweet_mode = 'extended')
@@ -84,6 +84,13 @@ def index():
 @application.route("/msg", methods=['POST'])
 def handle():
     # do something
+    print('message received!')
+    data = request.get_json()
+    if data['name'] != 'TwittoBot' and '$twit' in data['text']:
+        # create a switch..case under @twit to handle the various commands
+        msg = 'I acknowledge your message, ' + data['name'] + '!'
+        send_message(msg)
+        print(data['text'])
     return "Righteous!"
 
 # --------------- SERVER START ------------------
