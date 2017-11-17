@@ -28,6 +28,14 @@ class PollingThread(object):
         thread.daemon = True
         thread.start()
 
+    def set_username(self, name):
+        try:
+            api.user_timeline(screen_name = name)
+            self.top = 0
+            self.username = name
+        except Exception:
+            send_message("Follow failed! Please make sure the account name is correct and not private!")
+
     def run(self):
         # where the actual polling will take place
         while True:
@@ -36,7 +44,12 @@ class PollingThread(object):
                 status = api.user_timeline(screen_name = self.username, count = 1, tweet_mode = 'extended')
                 self.top = status[0]
                 print("Init: " + html.unescape(self.top.full_text))
-                # send_message(html.unescape(self.top.full_text))
+                if '@' not in self.username:
+                    # account for both methods some person may input a username during follow
+                    send_message("Started following @" + self.username + "!")
+                else:
+                    send_message("Started following " + self.username + "!")
+                send_message(self.top.user.name + ": " + html.unescape(self.top.full_text))
                 print(self.top.id)
             else:
                 status = api.user_timeline(screen_name = self.username, count = 1, tweet_mode = 'extended')
@@ -45,7 +58,7 @@ class PollingThread(object):
                 # check if the retrieved tweet is newer than the current recent
                 if curr.id > self.top.id:
                   print("New tweet! -> " + html.unescape(curr.full_text))
-                  send_message(html.unescape(curr.full_text))
+                  send_message(curr.user.name + ": " + html.unescape(curr.full_text))
                   self.top = curr
             # wait 15 seconds before checking again
             # twitter API requires at least 10 seconds between queries
@@ -84,13 +97,26 @@ def index():
 @application.route("/msg", methods=['POST'])
 def handle():
     # do something
-    print('message received!')
     data = request.get_json()
-    if data['name'] != 'TwittoBot' and '$twit' in data['text']:
+    if data['name'] != 'TwittoBot' and '#twit' in data['text']:
         # create a switch..case under @twit to handle the various commands
-        msg = 'I acknowledge your message, ' + data['name'] + '!'
+        # turns out python doesn't have switch..case statements..
+        tokens = data['text'].split()
+        msg = "Sorry, I didn't recognize that command. Try typing '#twit help' to list available commands"
+        if tokens[1]:
+            command = tokens[1]
+            if command == 'help':
+                # display help information
+                msg = "The TwittoBot is still under development. Some commands you can use: help, follow <user>"
+            if command == 'follow':
+                # follow a new user
+                if not tokens[2]:
+                    msg = "You must specify a valid public user to follow!"
+                else:
+                    msg = ""
+                    poll.set_username(tokens[2])
         send_message(msg)
-        print(data['text'])
+        print("Original message sent -> " + data['text'])
     return "Righteous!"
 
 # --------------- SERVER START ------------------
