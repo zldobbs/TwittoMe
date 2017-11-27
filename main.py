@@ -1,8 +1,6 @@
 # --------------- INITIALIZATION AND CONFIG ----
 # imports and initiatilization
 from flask import Flask, request
-# from urllib.parse import urlencode
-# from urllib.request import Request, urlopen
 import tweepy, json, config, time, threading, requests, html
 application = Flask(__name__)
 
