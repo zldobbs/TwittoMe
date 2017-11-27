@@ -18,48 +18,85 @@ class PollingThread(object):
     def __init__(self, interval=15):
         # establish thread details
         self.interval = interval
-        # create an option to change the followed user via the GroupMe bot
-        self.username = 'realDonaldTrump'
-        # initiate the first tweet to null
-        self.top = 0
+        # create an option to change the followed user via the GroupMe bot -- done
+        # make the username an array, call the poll on each username
+        self.users = [ {
+            'username'  : '@realDonaldTrump',
+            'top'       : 0 } ]
         thread = threading.Thread(target=self.run, args=())
         thread.daemon = True
         thread.start()
 
-    def set_username(self, name):
+    def add_tweeter(self, name):
+        # add a username to the users
+        if len(self.users) >= 5:
+            send_message("A maximum of 5 users may be followed at once! Type #twit unfollow <name> to open a spot")
+            return 0
+        if '@' not in name:
+            name = '@' + name
+        for tweeter in self.users:
+            if tweeter['username'].lower() == name.lower():
+                send_message("Follow failed! User is already being followed!")
+                return 0
         try:
             api.user_timeline(screen_name = name)
-            self.top = 0
-            self.username = name
-        except Exception:
+            tweeter = {'username': name, 'top': 0}
+            self.users.append(tweeter)
+        except Exception as e:
+            print(e)
             send_message("Follow failed! Please make sure the account name is correct and not private!")
+
+    def remove_tweeter(self, name):
+        # remove username from users
+        if '@' not in name:
+            name = '@' + name
+        for index, tweeter in enumerate(self.users):
+            if tweeter['username'].lower() == name.lower():
+                del self.users[index]
+                send_message("Successfully unfollowed " + name + "!")
+                return 0
+        send_message("User specified is not currently being followed!")
+
+    def list(self):
+        # list all usernames in usernames
+        if len(self.users) == 0:
+            msg = "Noone is being followed! Type #twit follow <user> to start following!"
+        else:
+            msg = "Users currently being followed: "
+            for tweeter in self.users:
+                msg = msg + tweeter['username'] + ' '
+        send_message(msg)
+
+    def query_user(self, tweeter):
+        # check for the new tweet
+        if tweeter['top'] == 0:
+            # pull the user's most recent tweet to reference against
+            status = api.user_timeline(screen_name = tweeter['username'], count = 1, tweet_mode = 'extended')
+            tweeter['top'] = status[0].id
+            print("Init: " + html.unescape(status[0].full_text))
+            if '@' not in tweeter['username']:
+                # account for both methods some person may input a username during follow
+                send_message("Started following @" + tweeter['username'] + "!")
+            else:
+                send_message("Started following " + tweeter['username'] + "!")
+            send_message(status[0].user.name + ": " + html.unescape(status[0].full_text))
+        else:
+            status = api.user_timeline(screen_name = tweeter['username'], count = 1, tweet_mode = 'extended')
+            curr = status[0]
+            # check if the retrieved tweet is newer than the current recent
+            if curr.id > tweeter['top']:
+              print("New tweet! -> " + html.unescape(curr.full_text))
+              send_message(curr.user.name + ": " + html.unescape(curr.full_text))
+              tweeter['top'] = curr.id
 
     def run(self):
         # where the actual polling will take place
         while True:
-            if self.top == 0:
-                # pull the user's most recent tweet to reference against
-                status = api.user_timeline(screen_name = self.username, count = 1, tweet_mode = 'extended')
-                self.top = status[0]
-                print("Init: " + html.unescape(self.top.full_text))
-                if '@' not in self.username:
-                    # account for both methods some person may input a username during follow
-                    send_message("Started following @" + self.username + "!")
-                else:
-                    send_message("Started following " + self.username + "!")
-                send_message(self.top.user.name + ": " + html.unescape(self.top.full_text))
-                print(self.top.id)
-            else:
-                status = api.user_timeline(screen_name = self.username, count = 1, tweet_mode = 'extended')
-                curr = status[0]
-                print(curr.id)
-                # check if the retrieved tweet is newer than the current recent
-                if curr.id > self.top.id:
-                  print("New tweet! -> " + html.unescape(curr.full_text))
-                  send_message(curr.user.name + ": " + html.unescape(curr.full_text))
-                  self.top = curr
+            for tweeter in self.users:
+                self.query_user(tweeter)
             # wait 15 seconds before checking again
             # twitter API requires at least 10 seconds between queries
+            print('polling...')
             time.sleep(self.interval)
 
 # start the polling!
@@ -88,7 +125,6 @@ def send_message(msg):
 @application.route("/", methods=['GET'])
 def index():
 	user = api.get_user('twitter')
-	print(user.screen_name + " API is functioning correctly!")
 	return "Everything is operational! Yippee!"
 
 # receive messages from the GroupMe Bot
@@ -105,14 +141,26 @@ def handle():
             command = tokens[1]
             if command == 'help':
                 # display help information
-                msg = "The TwittoBot is still under development. Some commands you can use: help, follow <user>"
+                msg = "Follow your favorite accounts to receive realtime updates on new tweets! Some available commands: "
+                msg = msg + "follow <user>, unfollow <user>, list" 
             if command == 'follow':
                 # follow a new user
                 if not tokens[2]:
                     msg = "You must specify a valid public user to follow!"
                 else:
                     msg = ""
-                    poll.set_username(tokens[2])
+                    poll.add_tweeter(tokens[2])
+            if command == 'list':
+                # list all users currently being followed
+                msg = ""
+                poll.list()
+            if command == 'unfollow':
+                # unfollow a user currently being followed
+                if not tokens[2]:
+                    msg = "You must specify a user to unfollow!"
+                else:
+                    msg = ""
+                    poll.remove_tweeter(tokens[2])
         send_message(msg)
         print("Original message sent -> " + data['text'])
     return "Righteous!"
