@@ -1,6 +1,6 @@
 # --------------- INITIALIZATION AND CONFIG ----
 # imports and initiatilization
-from flask import Flask, request
+from flask import Flask, request, render_template, url_for
 import tweepy, json, config, time, threading, requests, html
 application = Flask(__name__)
 
@@ -125,7 +125,7 @@ def send_message(msg):
 @application.route("/", methods=['GET'])
 def index():
 	user = api.get_user('twitter')
-	return "Everything is operational! Yippee!"
+	return render_template('index.html')
 
 # receive messages from the GroupMe Bot
 @application.route("/msg", methods=['POST'])
