@@ -1,0 +1,52 @@
+body {
+    background-image: url(images/flames.jpg);
+    background-repeat: no-repeat;
+    
+}
+
+
+#headStuff {
+   background-color: white;
+   width: 100%;
+   border-radius: 15%; 
+}
+
+#instructions {
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: white;
+}
+
+#about {
+    width: 100%;
+    background-color: white;
+    border-radius: 10%;
+    height: 150px;
+}
+
+#memberBig {
+    background-color: white;
+}
+
+.members {
+    height: 200px;
+    width: 100%;
+    border-style: solid;
+    border-width: 8px;
+    background-color: white;
+}
+
+img {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
+
+/*
+@media(min-width: 500px) {
+    img {
+        width: 150px;
+        height: 150px;
+    }
+}*/
