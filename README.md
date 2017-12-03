@@ -1,7 +1,5 @@
 # #TwittoMe
 
-Introduction:
-
 Github: https://github.com/zldobbs/TwittoMe
 
 Instance: http://ec2-54-84-226-34.compute-1.amazonaws.com
@@ -10,7 +8,7 @@ Members: Zachary Dobbs, Austin Sizemore
 •	Zachary Dobbs: Back End
 •	Austin Sizemore: Front End, Documentation
 
-Introduction:
+# Introduction:
  
   TwittoMe is a web application built to combine the functionalities of Twitter and GroupMe. The application is a GroupMe chat bot that will follow up to 5 specified twitter accounts. Anytime one of these accounts sends out a new tweet, the GroupMe bot will push the tweet into the chat. 
   The inspiration for this project came about during the active shooter threat we experienced earlier this semester. Students were complaining about the lack of communication through the text alert system. We noticed that the MU Alert Twitter account was actually providing much better up to date information. This project would allow those tweets to get pushed to whatever group chat you’re in, preventing the spread of false information that was so prevalent during this time. 
@@ -19,7 +17,7 @@ Introduction:
 
 
 
-Instructions:
+# Instructions:
 
   In order to test the project, you must first join the “Twittering” GroupMe chat. You can do so by following this link: https://web.groupme.com/join_group/36497532/bzHBsx
 Once in the chat, you can test the TwittoBot using some commands. To get the bot’s attention you use “#twit” followed by an instruction. The valid commands are:
@@ -35,7 +33,7 @@ Once in the chat, you can test the TwittoBot using some commands. To get the bot
 If you follow popular accounts such as realDonaldTrump, ESPN, or TacoBell, you should be able to see tweets being posted to the chat fairly quickly. 
 *Note: Following an account may take a few seconds to begin functioning. The follow function works as part of the polling thread that only operates every 15 seconds. Please be patient after using the #twit follow command!
 
-Implementation:
+# Implementation:
 
 Technologies:
 •	Flask (A Python Microframework)
@@ -49,7 +47,7 @@ Technologies:
 •	GroupMe Bot
   o	The GroupMe bot manages the method to receive messages from users and then post responses to the chat. 
 
-Parts Of Interest:
+# Parts Of Interest:
 
 Back End:
 
@@ -61,6 +59,6 @@ Front End:
   When it came to designing the front end, I ran into troubles of being unfamiliar with Bootstrap. Upon doing more research into the language, new discoveries or deeper learning on a topic made me to have to go back multiple times and change my CSS code to simplify the styling of the design and to minimalize my code. I used more of the @media rule to help with responsiveness of the page. 
   Problems I faced was indecisiveness and that I would not like how I was going about designing the site. This would restart too many times when I should have settled on a design. Additionally, I was able to make the site decently responsive but many changes could be made to increase the responsiveness. This could be achieved Bootstrap’s grid system and also using its version of the @media rule. Utilizing further animations would be ideal such as page switching transitions or scrolling effects such as parallax.
 
-Conclusion:
+# Conclusion:
 
   During the development of this project, both members of our group learned much during the project’s creation. The technology used was known to us beforehand but we learned many new techniques and really dove into the technologies to learn more about them. There were many roadblocks that were hit along the way when learning new things and trying to solve them. We ended up crafting a project that can be used on a regular basis for our personal use and for our friends as well and are happy with what we made.
