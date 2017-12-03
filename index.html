@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    
+    <!--Defines the width of the viewport to enable more resizability. user-scalable tells the website that they cannot zoom in on smaller screens-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    
+<!--    Bootstrap CSS CDN-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+<!--    Bootstrap JS CDN-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+<!--    Google JQuery CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+<!--    <link rel="stylesheet" type="text/css" href="index.css">-->
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    
+    <link rel="icon" href="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/glossy-black-icons-natural-wonders/051349-glossy-black-icon-natural-wonders-fire.png">
+    
+    <title>Twitto Me</title>
+    
+    <style>
+        html {
+            font-family: 'Roboto Condensed', sans-serif;
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+        }
+
+        #logfire {
+            background:url(http://sitepointstatic.com/examples/css3/animation/logfire.jpg?r=2) center top no-repeat;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        #flamegroup {
+            margin:0 auto;
+            position:relative;
+            width:100px; 
+            height:136px;
+        }
+
+        .flame {
+            margin:0 auto;
+            position:absolute;
+            width:100px; 
+            height:136px;
+         background:url(http://sitepointstatic.com/examples/css3/animation/flame-sprite.png?r=3) 0px 0px no-repeat;
+            animation: flicker .4s infinite;
+        }
+
+        @keyframes flicker { /* flame pulses */
+            0% {
+                background-position:0px 0px; 
+                opacity:.8 
+            }
+            25% {
+                background-position:0px 0px;
+            }
+
+            25.1% {
+                background-position:-100px 0px;        
+            }
+
+            50% {
+                background-position:-100px 0px;
+                opacity:.4
+            }
+
+            50.1% {
+                background-position:-200px 0px;
+            }
+            75% {
+                background-position:-200px 0px;
+            }
+            75.1% {
+                background-position:-100px 0px;
+            }
+            100% {
+                background-position:-100px 0px;
+                opacity:.8
+            }
+        }
+
+        #boiz {
+            font-size: 40pt;
+            background-color: black;
+            color: white;
+            margin-top: 33%;
+
+        }
+
+        .header {
+            text-align: center; 
+            background-color: white;
+            width: 100%;
+            font-size: 30pt;
+            margin-top: 35%;
+        }
+
+        #boiz, .header {
+            text-align: center;
+            width: 100%;
+        }
+
+        a {
+            color: black;
+        }
+
+        a:hover {
+            color: blue;
+        }
+
+        #bird {
+            background-position: left;
+            background-repeat: no-repeat;
+            position: inherit;
+            height: 180px;
+            width: 280px;
+        }
+
+        #bot {
+            height: 200px;
+            width: 200px;
+        }
+
+        #bird, #bot {
+            border-radius: 50%;
+        }
+
+        .info {
+            margin: auto;
+            text-align: left;
+            margin: 20px;
+            background-color: white;
+        }
+
+        .links {
+            text-align: center;
+            font-size: 150%;
+        }
+
+        .content {
+            margin: 20px;
+            border: solid;
+            border-width: 10px;
+        }
+
+        .profiles {
+            word-wrap: break-word;
+            margin: 20px;
+            background-color: white;
+            border-style: solid;
+            font-size: 20pt;
+            border-width: 10px;
+        }
+
+        .profilePic {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+        }
+
+        #tech {
+            text-align: center;
+        }
+
+        @media (min-width: 800px) {
+            body {
+                font-size: 400%;
+            }
+
+            #boiz {
+                margin-top: 0;
+                font-size: 50pt;
+            }
+
+            .header {
+                font-size: 70pt;
+                margin-top: 0;
+            }
+
+            .profilePic {
+                height: 600px;
+                width: 600px;
+            }
+
+            .profiles {
+                font-size: 200%;
+            }
+
+            #bird {
+                height: 400px;
+                width: 600px;
+            }
+
+            #bot {
+                height: 400px;
+                width: 400px;
+            }
+        }
+    </style>
+    
+</head>
+
+<!--when using container or container-fluid, margins and padding are added but when equiping all elements inside with a class of row removes these as they have NEGATIVE padding and margins that thus override the overall container-->
+<body class="container-fluid">
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html">Home</a></li>
+                <li>
+                    <a href="instructions.html">Instructions</a>
+                </li>
+                <li><a href="tech.html">Technology</a></li>
+            </ul>
+         </div>
+    </nav>
+    <br>
+    <h1 class="row" id="boiz">Burnin' Boiz</h1>
+    
+    <div class="row" id="logfire">
+        <div id="flamegroup">
+            <div class="flame" id="fl1"></div>
+            <div class="flame" id="fl2"></div>
+            <div class="flame" id="fl3"></div>
+        </div>
+    </div>
+
+<!--    Content of our page-->
+    <div class="row">
+        <div class="info">
+            <h1 class="header"><strong>Introduction</strong></h1>
+            <br>
+            <div class="links">
+                <strong>Links:</strong>
+                <br>
+                <a href="https://github.com/zldobbs/TwittoMe">Project Github</a>
+                <br>
+                <a href="http://ec2-54-84-226-34.compute-1.amazonaws.com">Instance</a>
+            </div>
+            <br>
+
+        <!--Member Profiles-->
+            <div class="profiles text-center row" align="center">
+                <h1 class="header"><strong>Members</strong></h1>
+                <br>
+                <div>
+                    <p>Zachary Dobbs</p>
+                    <br>
+                    <!--img-rounded class not working -->
+                    <img src="https://lh6.googleusercontent.com/-UXSr8j85KJA/AAAAAAAAAAI/AAAAAAAAAG8/iu9BfTMa-SU/photo.jpg?sz=328" alt="Mr. Dobbs" class="img-responsive center-block profilePic">
+                    <br>
+                    <a href="https://github.com/zldobbs">Zach's Github</a>
+                    <br>
+                </div>
+                <br>
+                <div>
+                    Austin Sizemore
+                    <img src="https://pbs.twimg.com/profile_images/420587030968414208/30OUzPhf.jpeg" alt="Señior Sizemore" class="img-responsive center-block profilePic">
+                    <br>
+                    <a href="https://github.com/as86b">Austin's Github</a>
+                    <br>
+                </div>
+            </div>
+
+            <br>
+            <div class="info">
+                <h1 class="header"><strong>Description</strong></h1>
+                <div class="content">
+                    <p>TwittoMe is a web application built to combine the functionalities of Twitter and GroupMe. The application is a GroupMe chat bot that will follow up to 5 specified twitter accounts. Anytime one of these accounts sends out a new tweet, the GroupMe bot will push the tweet into the chat.
+                    <br>
+                    The inspiration for this project came about during the active shooter threat we experienced earlier this semester. Students were complaining about the lack of communication through the text alert system. We noticed that the MU Alert Twitter account was actually providing much better up to date information. This project would allow those tweets to get pushed to whatever group chat you’re in, preventing the spread of false information that was so prevelant during this time. 
+                    <br>    
+                    Other examples of the benefits of this bot are following the New York Stock Exchange to discuss stock fluctuations, Donald Trump to discuss/laugh at politics, or Barstool Mizzou to keep up with all the hot takes from the football game. The possibilities are endless when the power of these two applications are combined through our web app. 
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+</body>
+</html>

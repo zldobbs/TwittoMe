@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Defines the width of the viewport to enable more resizability. user-scalable tells the website that they cannot zoom in on smaller screens-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    
+<!--    Bootstrap CSS CDN-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+<!--    Bootstrap JS CDN-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+<!--    Google JQuery CDN-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+<!--    <link rel="stylesheet" type="text/css" href="index.css">-->
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    
+    <title>Twitto Me</title>
+    
+    <style>
+        html {
+            font-family: 'Roboto Condensed', sans-serif;
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-color: black;
+        }
+
+        #logfire {
+            background:url(http://sitepointstatic.com/examples/css3/animation/logfire.jpg?r=2) center top no-repeat;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+
+        #flamegroup {
+            margin:0 auto;
+            position:relative;
+            width:100px; 
+            height:136px;
+        }
+
+        .flame {
+            margin:0 auto;
+            position:absolute;
+            width:100px; 
+            height:136px;
+         background:url(http://sitepointstatic.com/examples/css3/animation/flame-sprite.png?r=3) 0px 0px no-repeat;
+            animation: flicker .4s infinite;
+        }
+
+        @keyframes flicker { /* flame pulses */
+            0% {
+                background-position:0px 0px; 
+                opacity:.8 
+            }
+            25% {
+                background-position:0px 0px;
+            }
+
+            25.1% {
+                background-position:-100px 0px;        
+            }
+
+            50% {
+                background-position:-100px 0px;
+                opacity:.4
+            }
+
+            50.1% {
+                background-position:-200px 0px;
+            }
+            75% {
+                background-position:-200px 0px;
+            }
+            75.1% {
+                background-position:-100px 0px;
+            }
+            100% {
+                background-position:-100px 0px;
+                opacity:.8
+            }
+        }
+
+        #boiz {
+            font-size: 40pt;
+            background-color: black;
+            color: white;
+            margin-top: 33%;
+
+        }
+
+        .header {
+            text-align: center; 
+            background-color: white;
+            width: 100%;
+            font-size: 30pt;
+            margin-top: 35%;
+        }
+
+        #boiz, .header {
+            text-align: center;
+            width: 100%;
+        }
+
+        a {
+            color: black;
+        }
+
+        a:hover {
+            color: blue;
+        }
+
+        #bird {
+            background-position: left;
+            background-repeat: no-repeat;
+            position: inherit;
+            height: 180px;
+            width: 280px;
+        }
+
+        #bot {
+            height: 200px;
+            width: 200px;
+        }
+
+        #bird, #bot {
+            border-radius: 50%;
+        }
+
+        .info {
+            margin: auto;
+            text-align: left;
+            margin: 20px;
+            background-color: white;
+            border-style: solid;
+        }
+
+        .links {
+            text-align: center;
+            font-size: 150%;
+        }
+
+        .content {
+            margin: 20px;
+            border: solid;
+            border-width: 10px;
+        }
+
+        .profiles {
+            word-wrap: break-word;
+            margin: 20px;
+            background-color: white;
+            border-style: solid;
+            font-size: 20pt;
+        }
+
+        .profilePic {
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+        }
+
+        #tech {
+            text-align: center;
+        }
+
+        @media (min-width: 800px) {
+            body {
+                font-size: 400%;
+            }
+
+            #boiz {
+                margin-top: 0;
+                font-size: 50pt;
+            }
+
+            .header {
+                font-size: 70pt;
+                margin-top: 0;
+            }
+
+            .profilePic {
+                height: 600px;
+                width: 600px;
+            }
+
+            .profiles {
+                font-size: 200%;
+            }
+
+            #bird {
+                height: 400px;
+                width: 600px;
+            }
+
+            #bot {
+                height: 400px;
+                width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html">Home</a></li>
+                <li>
+                    <a href="instructions.html">Instructions</a>
+                </li>
+                <li><a href="tech.html">Technology</a></li>
+            </ul>
+         </div>
+    </nav>
+    <br>
+    <div class="info">
+        <h1 class="header"><strong>Instructions</strong></h1>
+        <div class="content">
+            <p>
+                In order to test the project, you must first join the “Twittering” GroupMe chat. You can do so by following this link:
+                <a href="https://web.groupme.com/join_group/36497532/bzHBsx">here</a>
+                <br>
+                Once in the chat, you can test the TwittoBot using some commands. To get the bot’s attention you use “#twit” followed by an instruction. The valid commands are:
+                <br>
+                <br>
+                &emsp;#twit follow username
+                <br>
+                &emsp;&emsp;o Adds the specified username to the list of accounts being followed. The username must be valid and not a private account. The bot may only follow 5 accounts at one time.
+                <br>
+                &emsp;#twit unfollow username
+                <br>
+                &emsp;&emsp;o Removes the specified username from the list of accounts being followed.
+                <br>
+                &emsp;#twit list
+                <br>
+                &emsp;&emsp;o Lists all accounts currently being followed
+                <br>
+                &emsp;#twit help
+                <br>
+                &emsp;&emsp;o Displays a simple help message outlining these commands.
+                <br>
+                <br>
+                If you follow popular accounts such as realDonaldTrump, ESPN, or TacoBell, you should be able to see tweets being posted to the chat fairly quickly. 
+                <br>
+                <br>
+                <i><strong>*Note:</strong></i> Following an account may take a few seconds to begin functioning. The follow function works as part of the polling thread that only operates every 15 seconds. Please be patient after using the #twit follow command!
+            </p>
+        </div>
+    </div>
+</body>    
+</html>
