@@ -31,7 +31,7 @@ class PollingThread(object):
         # defaults to Donald Trump at the start of the server
         # the top parameter specifies the ID of the user's most recent tweet
         self.users = [ {
-            'username'  : '@realDonaldTrump',
+            'username'  : '@Salvado43061975',
             'top'       : 0 } ]
         # start the thread as a daemon so it does not interrupt normal functionality
         thread = threading.Thread(target=self.run, args=())
@@ -103,7 +103,8 @@ class PollingThread(object):
             else:
                 send_message("Started following " + tweeter['username'] + "!")
             # send the tweet retrieved
-            send_message(status[0].user.name + ": " + html.unescape(status[0].full_text))
+            tweet = status[0]
+            send_tweet(tweet)
         # if top is not 0, then some tweet has already been referenced
         else:
             status = api.user_timeline(screen_name = tweeter['username'], count = 1, tweet_mode = 'extended')
@@ -111,7 +112,7 @@ class PollingThread(object):
             # check if the retrieved tweet is newer than current top tweet
             if curr.id > tweeter['top']:
               print("New tweet! -> " + html.unescape(curr.full_text))
-              send_message(curr.user.name + ": " + html.unescape(curr.full_text))
+              send_tweet(curr)
               # set the new top to the current tweet
               tweeter['top'] = curr.id
 
@@ -130,6 +131,13 @@ class PollingThread(object):
 # start the polling!
 poll = PollingThread()
 
+# method will send the tweet infromation to GroupMe via bot
+def send_tweet(status):
+    # set the name and message
+    name = status.user.name
+    msg = html.unescape(status.full_text)
+    send_message(name + ": " + msg)
+
 # --------------- GROUPME BOT ------------------
 # sends the specified message to the GroupMe chat
 def send_message(msg):
@@ -143,6 +151,18 @@ def send_message(msg):
 @application.route("/", methods=['GET'])
 def index():
 	return render_template('home.html')
+
+@application.route("/home", methods=['GET'])
+def home():
+	return render_template('home.html')
+
+@application.route("/tech", methods=['GET'])
+def tech():
+	return render_template('tech.html')
+
+@application.route("/instructions", methods=['GET'])
+def instructions():
+	return render_template('instructions.html')
 
 # handle the callback of messages sent from the group chat
 @application.route("/msg", methods=['POST'])

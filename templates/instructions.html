@@ -1,28 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html>
 <head>
-    <meta charset="utf-8">
-    
     <!--Defines the width of the viewport to enable more resizability. user-scalable tells the website that they cannot zoom in on smaller screens-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-    
+
 <!--    Bootstrap CSS CDN-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
+
 <!--    Bootstrap JS CDN-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+
 <!--    Google JQuery CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
 <!--    <link rel="stylesheet" type="text/css" href="index.css">-->
-    
+
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-    
-    <link rel="icon" href="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/glossy-black-icons-natural-wonders/051349-glossy-black-icon-natural-wonders-fire.png">
-    
+
     <title>Twitto Me</title>
-    
+
     <style>
         html {
             font-family: 'Roboto Condensed', sans-serif;
@@ -50,14 +46,14 @@
         #flamegroup {
             margin:0 auto;
             position:relative;
-            width:100px; 
+            width:100px;
             height:136px;
         }
 
         .flame {
             margin:0 auto;
             position:absolute;
-            width:100px; 
+            width:100px;
             height:136px;
          background:url(http://sitepointstatic.com/examples/css3/animation/flame-sprite.png?r=3) 0px 0px no-repeat;
             animation: flicker .4s infinite;
@@ -65,15 +61,15 @@
 
         @keyframes flicker { /* flame pulses */
             0% {
-                background-position:0px 0px; 
-                opacity:.8 
+                background-position:0px 0px;
+                opacity:.8
             }
             25% {
                 background-position:0px 0px;
             }
 
             25.1% {
-                background-position:-100px 0px;        
+                background-position:-100px 0px;
             }
 
             50% {
@@ -105,7 +101,7 @@
         }
 
         .header {
-            text-align: center; 
+            text-align: center;
             background-color: white;
             width: 100%;
             font-size: 30pt;
@@ -147,6 +143,7 @@
             text-align: left;
             margin: 20px;
             background-color: white;
+            border-style: solid;
         }
 
         .links {
@@ -166,7 +163,6 @@
             background-color: white;
             border-style: solid;
             font-size: 20pt;
-            border-width: 10px;
         }
 
         .profilePic {
@@ -214,87 +210,55 @@
             }
         }
     </style>
-    
 </head>
+<body>
 
-<!--when using container or container-fluid, margins and padding are added but when equiping all elements inside with a class of row removes these as they have NEGATIVE padding and margins that thus override the overall container-->
-<body class="container-fluid">
-    
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.html">Home</a></li>
+                    <a href="home">Home</a></li>
                 <li>
-                    <a href="instructions.html">Instructions</a>
+                    <a href="instructions">Instructions</a>
                 </li>
-                <li><a href="tech.html">Technology</a></li>
+                <li><a href="tech">Technology</a></li>
             </ul>
          </div>
     </nav>
     <br>
-    <h1 class="row" id="boiz">Burnin' Boiz</h1>
-    
-    <div class="row" id="logfire">
-        <div id="flamegroup">
-            <div class="flame" id="fl1"></div>
-            <div class="flame" id="fl2"></div>
-            <div class="flame" id="fl3"></div>
+    <div class="info">
+        <h1 class="header"><strong>Instructions</strong></h1>
+        <div class="content">
+            <p>
+                In order to test the project, you must first join the “Twittering” GroupMe chat. You can do so by following this link:
+                <a href="https://web.groupme.com/join_group/36497532/bzHBsx">here</a>
+                <br>
+                Once in the chat, you can test the TwittoBot using some commands. To get the bot’s attention you use “#twit” followed by an instruction. The valid commands are:
+                <br>
+                <br>
+                &emsp;#twit follow username
+                <br>
+                &emsp;&emsp;o Adds the specified username to the list of accounts being followed. The username must be valid and not a private account. The bot may only follow 5 accounts at one time.
+                <br>
+                &emsp;#twit unfollow username
+                <br>
+                &emsp;&emsp;o Removes the specified username from the list of accounts being followed.
+                <br>
+                &emsp;#twit list
+                <br>
+                &emsp;&emsp;o Lists all accounts currently being followed
+                <br>
+                &emsp;#twit help
+                <br>
+                &emsp;&emsp;o Displays a simple help message outlining these commands.
+                <br>
+                <br>
+                If you follow popular accounts such as realDonaldTrump, ESPN, or TacoBell, you should be able to see tweets being posted to the chat fairly quickly.
+                <br>
+                <br>
+                <i><strong>*Note:</strong></i> Following an account may take a few seconds to begin functioning. The follow function works as part of the polling thread that only operates every 15 seconds. Please be patient after using the #twit follow command!
+            </p>
         </div>
-    </div>
-
-<!--    Content of our page-->
-    <div class="row">
-        <div class="info">
-            <h1 class="header"><strong>Introduction</strong></h1>
-            <br>
-            <div class="links">
-                <strong>Links:</strong>
-                <br>
-                <a href="https://github.com/zldobbs/TwittoMe">Project Github</a>
-                <br>
-                <a href="http://ec2-54-84-226-34.compute-1.amazonaws.com">Instance</a>
-            </div>
-            <br>
-
-        <!--Member Profiles-->
-            <div class="profiles text-center row" align="center">
-                <h1 class="header"><strong>Members</strong></h1>
-                <br>
-                <div>
-                    <p>Zachary Dobbs</p>
-                    <br>
-                    <!--img-rounded class not working -->
-                    <img src="https://lh6.googleusercontent.com/-UXSr8j85KJA/AAAAAAAAAAI/AAAAAAAAAG8/iu9BfTMa-SU/photo.jpg?sz=328" alt="Mr. Dobbs" class="img-responsive center-block profilePic">
-                    <br>
-                    <a href="https://github.com/zldobbs">Zach's Github</a>
-                    <br>
-                </div>
-                <br>
-                <div>
-                    Austin Sizemore
-                    <img src="https://pbs.twimg.com/profile_images/420587030968414208/30OUzPhf.jpeg" alt="Señior Sizemore" class="img-responsive center-block profilePic">
-                    <br>
-                    <a href="https://github.com/as86b">Austin's Github</a>
-                    <br>
-                </div>
-            </div>
-
-            <br>
-            <div class="info">
-                <h1 class="header"><strong>Description</strong></h1>
-                <div class="content">
-                    <p>TwittoMe is a web application built to combine the functionalities of Twitter and GroupMe. The application is a GroupMe chat bot that will follow up to 5 specified twitter accounts. Anytime one of these accounts sends out a new tweet, the GroupMe bot will push the tweet into the chat.
-                    <br>
-                    The inspiration for this project came about during the active shooter threat we experienced earlier this semester. Students were complaining about the lack of communication through the text alert system. We noticed that the MU Alert Twitter account was actually providing much better up to date information. This project would allow those tweets to get pushed to whatever group chat you’re in, preventing the spread of false information that was so prevelant during this time. 
-                    <br>    
-                    Other examples of the benefits of this bot are following the New York Stock Exchange to discuss stock fluctuations, Donald Trump to discuss/laugh at politics, or Barstool Mizzou to keep up with all the hot takes from the football game. The possibilities are endless when the power of these two applications are combined through our web app. 
-                    </p>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
     </div>
 </body>
 </html>

@@ -3,24 +3,24 @@
 <head>
     <!--Defines the width of the viewport to enable more resizability. user-scalable tells the website that they cannot zoom in on smaller screens-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-    
+
 <!--    Bootstrap CSS CDN-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    
+
 <!--    Bootstrap JS CDN-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+
 <!--    Google JQuery CDN-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
 <!--
     <link rel="stylesheet" type="text/css" href="index.css">
-    
+
 -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
-    
+
     <title>Twitto Me</title>
-    
+
     <style>
         html {
             font-family: 'Roboto Condensed', sans-serif;
@@ -48,14 +48,14 @@
         #flamegroup {
             margin:0 auto;
             position:relative;
-            width:100px; 
+            width:100px;
             height:136px;
         }
 
         .flame {
             margin:0 auto;
             position:absolute;
-            width:100px; 
+            width:100px;
             height:136px;
          background:url(http://sitepointstatic.com/examples/css3/animation/flame-sprite.png?r=3) 0px 0px no-repeat;
             animation: flicker .4s infinite;
@@ -63,15 +63,15 @@
 
         @keyframes flicker { /* flame pulses */
             0% {
-                background-position:0px 0px; 
-                opacity:.8 
+                background-position:0px 0px;
+                opacity:.8
             }
             25% {
                 background-position:0px 0px;
             }
 
             25.1% {
-                background-position:-100px 0px;        
+                background-position:-100px 0px;
             }
 
             50% {
@@ -103,7 +103,7 @@
         }
 
         .header {
-            text-align: center; 
+            text-align: center;
             background-color: white;
             width: 100%;
             font-size: 30pt;
@@ -122,12 +122,12 @@
         a:hover {
             color: blue;
         }
-        
+
         #flask {
             height: 200px;
             width: 200px;
         }
-        
+
         #boot {
             height: 200px;
             width: 200px;
@@ -210,7 +210,7 @@
             .profiles {
                 font-size: 200%;
             }
-            
+
             #flask {
                 height: 400px;
                 width: 400px;
@@ -220,7 +220,7 @@
                 height: 400px;
                 width: 400px;
             }
-            
+
             #bird {
                 height: 400px;
                 width: 600px;
@@ -232,18 +232,18 @@
             }
         }
     </style>
-    
+
 </head>
 <body>
      <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="index.html">Home</a></li>
+                    <a href="home">Home</a></li>
                 <li>
-                    <a href="instructions.html">Instructions</a>
+                    <a href="instructions">Instructions</a>
                 </li>
-                <li><a href="tech.html">Technology</a></li>
+                <li><a href="tech">Technology</a></li>
             </ul>
          </div>
     </nav>
@@ -258,7 +258,7 @@
                 </div>
                 <br>
                 <p>
-                &emsp;&emsp;o Flask was run through a   nginx/Gunicorn server setup. The microframework made it easy for handling all of the URL callbacks and routing associated with the various API’s used. 
+                &emsp;&emsp;o Flask was run through a   nginx/Gunicorn server setup. The microframework made it easy for handling all of the URL callbacks and routing associated with the various API’s used.
                 </p>
                 &emsp;HTML
                 <br>
@@ -277,16 +277,16 @@
                 </div>
 
                 <br>
-                &emsp;&emsp;o The Twitter API was authenticated and ran using the Tweepy module for Flask. This module made it incredibly simple to manage the polling of user timelines. 
+                &emsp;&emsp;o The Twitter API was authenticated and ran using the Tweepy module for Flask. This module made it incredibly simple to manage the polling of user timelines.
                 <br>
-                
+
                 &emsp;GroupMe Bot
                 <br>
                 <div>
                     <img src="https://pbs.twimg.com/profile_images/885267929419231232/JbxIy3Pn.jpg" alt="GroupMe" id="bot">
                 </div>
                 <br>
-                &emsp;&emsp;o The GroupMe bot manages the method to receive messages from users and then post responses to the chat. 
+                &emsp;&emsp;o The GroupMe bot manages the method to receive messages from users and then post responses to the chat.
             </div>
         </div>
 </body>
